@@ -21,7 +21,7 @@ jobs:
 
       - id: update
         name: Update Formula and Cask
-        run: python3 scripts/update.py
+        run: ruby scripts/update.rb
 
       - name: Commit update
         if: steps.update.outputs.changed == 'true'
