@@ -1,6 +1,6 @@
 cask "enbu-desktop" do
-  version "0.7.5"
-  sha256 "3b036051f45f4dd39b4e2651c17fce9e5c92a57bd25b084d93ad8f7ea6a954f8"
+  version "0.7.7"
+  sha256 "6c9250eca4a1ce515abe5ce6a46fc37e1e535133f3f83e921064c80cca4a353c"
 
   url "https://github.com/enbu-net/enbu/releases/download/v#{version}/enbu-desktop_v#{version}_darwin_arm64.dmg"
   name "enbu"
