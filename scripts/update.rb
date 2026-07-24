@@ -38,19 +38,35 @@ module UpdateEnbu
 
   def replace_package?(path, version, assets, checksums)
     original = File.read(path)
+    lines = original.lines
     pending_asset = nil
 
-    updated = original.lines.map do |line|
-      next "#{line[/\A\s*/]}version \"#{version}\"\n" if line.strip.start_with?('version "')
+    updated = lines.each_with_index.map do |line, i|
+      next "#{line[/\A\s*/]}version "#{version}"
+" if line.strip.start_with?('version "')
 
       if line.strip.start_with?('url "')
         pending_asset = assets.find { |marker, _asset| line.include?(marker) }&.last
         next line
       end
 
-      if pending_asset && line.strip.start_with?('sha256 "')
-        line = "#{line[/\A\s*/]}sha256 \"#{checksums.fetch(pending_asset)}\"\n"
-        pending_asset = nil
+      if line.strip.start_with?('sha256 "')
+        # Formula style: url came before sha256
+        if pending_asset
+          updated_line = "#{line[/\A\s*/]}sha256 "#{checksums.fetch(pending_asset)}"
+"
+          pending_asset = nil
+          next updated_line
+        end
+
+        # Cask style: sha256 comes before url - look ahead for the url line
+        j = i + 1
+        j += 1 while j < lines.size && lines[j].strip.empty?
+        if j < lines.size && lines[j].strip.start_with?('url "')
+          lookahead_asset = assets.find { |marker, _asset| lines[j].include?(marker) }&.last
+          next "#{line[/\A\s*/]}sha256 "#{checksums.fetch(lookahead_asset)}"
+" if lookahead_asset
+        end
       end
 
       line
