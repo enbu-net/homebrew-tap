@@ -77,9 +77,9 @@ module UpdateEnbu
     end
 
     formula_assets = {
-      "darwin_arm64.tar.gz" => "enbu_#{version}_darwin_arm64.tar.gz",
-      "linux_arm64.tar.gz"  => "enbu_#{version}_linux_arm64.tar.gz",
-      "linux_amd64.tar.gz"  => "enbu_#{version}_linux_amd64.tar.gz",
+      "darwin_arm64.tar.gz" => "enbu_v#{version}_darwin_arm64.tar.gz",
+      "linux_arm64.tar.gz"  => "enbu_v#{version}_linux_arm64.tar.gz",
+      "linux_amd64.tar.gz"  => "enbu_v#{version}_linux_amd64.tar.gz",
     }
     cask_assets = {
       "darwin_arm64.dmg" => "enbu-desktop_v#{version}_darwin_arm64.dmg",

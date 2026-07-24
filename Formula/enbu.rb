@@ -1,20 +1,20 @@
 class Enbu < Formula
   desc "End-to-end encrypted .env management using GitHub"
   homepage "https://enbu.net/"
-  version "0.7.3"
+  version "0.7.4"
   license "MIT"
 
   if OS.mac?
     depends_on arch: :arm64
 
-    url "https://github.com/enbu-net/enbu/releases/download/v#{version}/enbu_#{version}_darwin_arm64.tar.gz"
-    sha256 "37bcf9c25c8d230c358b32f035f745252b88805fa5cc2d74c2888e62151eb764"
+    url "https://github.com/enbu-net/enbu/releases/download/v#{version}/enbu_v#{version}_darwin_arm64.tar.gz"
+    sha256 "f9786cbd50cbd89138d28fe9f1dc81baa519511e006e59d98639265e29fd4806"
   elsif Hardware::CPU.arm?
-    url "https://github.com/enbu-net/enbu/releases/download/v#{version}/enbu_#{version}_linux_arm64.tar.gz"
-    sha256 "6f259c972e48f358ce99891740342b1d3f5c8f0b943c9ada8783c608e9242d9b"
+    url "https://github.com/enbu-net/enbu/releases/download/v#{version}/enbu_v#{version}_linux_arm64.tar.gz"
+    sha256 "332f8c3e559843d57e307b22f069d8aba222e0cae72ba3047a45624d76d68d6f"
   else
-    url "https://github.com/enbu-net/enbu/releases/download/v#{version}/enbu_#{version}_linux_amd64.tar.gz"
-    sha256 "4ee60ae319deba4fc3f40146a783ed57b38e8839940cabc957e622de08025dd4"
+    url "https://github.com/enbu-net/enbu/releases/download/v#{version}/enbu_v#{version}_linux_amd64.tar.gz"
+    sha256 "226d3580f7d7952a4319147f60aa56bde7474edfebae2b83a3518fb9f172711e"
   end
 
   def install
